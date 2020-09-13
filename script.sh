@@ -7,6 +7,9 @@ lecture_output_dir="./lecture"
 slide_output_dir="./slides"
 mkdir -p $lecture_output_dir
 mkdir -p $slide_output_dir
+rm -rf $lecture_output_dir/*
+rm -rf $slide_output_dir/*
+
 for i in $(seq 0 $number_of_pieces); do
 	printf -v lecture_piece_url "%s/%05d.ts" $lecture_url_root $i
 	printf -v slide_piece_url "%s/%05d.ts" $slides_url_root $i
