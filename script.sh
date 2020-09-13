@@ -38,3 +38,12 @@ for i in $(seq 0 $number_of_pieces); do
 	echo "------------------"
 done
 
+echo "Gluing pieces together for lectures"
+find $lecture_output_dir -type f -exec file -N -i -- {} + | sed -n 's!: application/[^:]*$!!p' | sort | xargs -n 1 -I {} cat {} >> full_lecture.ts
+echo "Full lecture is in the file full_lecture.ts"
+echo ""
+
+echo "Gluing pieces together for slides"
+find $slide_output_dir -type f -exec file -N -i -- {} + | sed -n 's!: application/[^:]*$!!p' | sort | xargs -n 1 -I {} cat {} >> full_lecture_slides.ts
+echo "Full lecture slide recording is in the file full_lecture_slides.ts"
+
