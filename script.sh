@@ -3,6 +3,10 @@ lecture_url_root=$2
 slides_url_root=$3
 number_of_pieces=$1
 dry_mode=$4 || false
+lecture_output_dir="./lecture"
+slide_output_dir="./slides"
+mkdir -p $lecture_output_dir
+mkdir -p $slide_output_dir
 for i in $(seq 0 $number_of_pieces); do
 	printf -v lecture_piece_url "%s/%05d.ts" $lecture_url_root $i
 	printf -v slide_piece_url "%s/%05d.ts" $slides_url_root $i
@@ -11,7 +15,6 @@ for i in $(seq 0 $number_of_pieces); do
 	echo ""
 
 	echo -e "\tDownloading lecture piece..."
-	lecture_output_dir="./lecture"
 	if [ "$dry_mode" = true ]; then
 		echo -e "\tDownloading ${lecture_piece_url} to ${lecture_output_dir}"
 	else
@@ -22,7 +25,6 @@ for i in $(seq 0 $number_of_pieces); do
 	echo ""
 	
 	echo -e "\tDownloading slide piece..."
-	slide_output_dir="./slides"
 	if [ "$dry_mode" = true ]; then
                 echo -e "\tDownloading ${slide_piece_url} to ${slide_output_dir}"
         else
